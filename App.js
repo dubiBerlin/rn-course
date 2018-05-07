@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 export default class App extends React.Component {
   state = {
-    placeName: ""
+    placeName: "",
+    places: []
   };
 
   placeNameChangedHandler = val => {
@@ -11,6 +12,8 @@ export default class App extends React.Component {
       placeName: val
     });
   };
+
+  placeSubmitHandler = () => {};
 
   render() {
     return (
@@ -27,6 +30,7 @@ export default class App extends React.Component {
             title="Add"
             style={styles.button}
             accessibilityLabel="Learn more about this purple button"
+            onPress={this.placeSubmitHandler}
           />
         </View>
       </View>
