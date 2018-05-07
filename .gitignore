@@ -5,6 +5,7 @@
 
 # dependencies
 /node_modules
+/android
 
 # misc
 .env.local
