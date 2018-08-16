@@ -3,9 +3,12 @@ import { StyleSheet, View } from "react-native";
 
 import ListItem from "../ListItem/ListItem";
 
+
+
 const placeList = props => {
+  // bekommt array als prop und durchläuft es
   const placesOutput = props.places.map((place, i) => (
-    <ListItem key={i} placeName={place} />
+    <ListItem key={i} placeName={place} onItemPressed={() => props.onItemDeleted(i)} />
   ));
 
   return <View style={styles.listContainer}>{placesOutput}</View>;

@@ -1,10 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+
+
 
 const listItem = props => (
-  <View style={styles.listItem}>
-    <Text>{props.placeName}</Text>
-  </View>
+  // TouchableOpacity macht es drückbar deswegen kann man onPress Methode einfügen 
+  <TouchableOpacity onPress={props.onItemPressed}>
+    <View style={styles.listItem}>
+      <Text >{props.placeName}</Text>
+    </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
