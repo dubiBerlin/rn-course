@@ -28,6 +28,9 @@ export default class App extends React.Component {
     })
   }
 
+  // onItemDeleted wird im Unterkomponent als prop aufgerufen
+  // innerhalb der onItemDeleted Funktion wird die Function
+  // PlaceDeleteHandler aufgerufen
   render() {
     return (
       <View style={styles.container}>
