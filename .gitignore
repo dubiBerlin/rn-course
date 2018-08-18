@@ -6,7 +6,11 @@
 # dependencies
 /node_modules
 /android
+<<<<<<< HEAD
 
+=======
+/ios
+>>>>>>> secondbranch
 # misc
 .env.local
 .env.development.local
