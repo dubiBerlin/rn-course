@@ -12,6 +12,10 @@ class PlaceInput extends React.Component {
     });
   };
 
+  /* Funktion die aufgerufen wird wenn der button 
+     gedrückt wird. Sie ruft die Funktion auf die als
+     prop von der oberen Komponente übergeben wurde(App.js)
+     In der oberen Komponente wurde dem prop der Name "onPlaceAdded" gegeben.  */
   placeSubmitHandler = () => {
     if (this.state.placeName.trim() === "") {
       return;

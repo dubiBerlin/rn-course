@@ -6,49 +6,28 @@ import PlaceList from "./src/components/PlaceList/PlaceList";
 
 export default class App extends React.Component {
   state = {
-<<<<<<< HEAD
-    placeName: "",
-=======
->>>>>>> secondbranch
     places: []
   };
 
-
+  /* Diese Funktion fügt ein Wort in das Array ein. Es wird an die
+     PlaceInput Komponente weitergegeben */
   placeAddedHandler = placeName => {
     this.setState(prevState => {
       return {
-        places: prevState.places.concat(placeName)
+        places: prevState.places.concat({ key: Math.random(), value: placeName })
       };
     });
   };
 
-<<<<<<< HEAD
-  placeSubmitHandler = () => {};
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.placeInput}
-            placeholder="An awesome place"
-            value={this.state.placeName}
-            onChangeText={this.placeNameChangedHandler}
-          />
-
-          <Button
-            title="Add"
-            style={styles.button}
-            accessibilityLabel="Learn more about this purple button"
-            onPress={this.placeSubmitHandler}
-          />
-        </View>
-=======
-  placeDeletedHandler = index => {
+  /* Löscht ein wort (Objekt bestehend aus key, value) aus dem Array.
+     Es bekommt den Key des Objekts, es erstellt ein neues Array mithilfe von
+     der filter funktion und dem alten Zustand prevState und nimmt nur dieObjekte
+     die einen ungleichen key haben wir der übegebene. */
+  placeDeletedHandler = key => {
     this.setState(prevState => {
       return {
-        places: prevState.places.filter((place, i) => {
-          return i !== index;
+        places: prevState.places.filter(place => {
+          return place.key !== key;
         })
       }
     })
@@ -62,7 +41,6 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler} />
->>>>>>> secondbranch
       </View>
     );
   }
