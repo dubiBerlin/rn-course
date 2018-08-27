@@ -4,11 +4,13 @@ import { StyleSheet, Text, View } from "react-native";
 import PlaceInput from "./src/components/PlaceInput/PlaceInput";
 import PlaceList from "./src/components/PlaceList/PlaceList";
 import placeImage from "./src/assets/ljubis.jpg";
+import PlaceDetail from "./src/components/PlaceDetail/PlaceDetail";
 
 
 export default class App extends React.Component {
   state = {
-    places: []
+    places: [],
+    selectedPlace: ""
   };
 
   /* Diese Funktion fügt ein Wort in das Array ein. Es wird an die
@@ -39,14 +41,24 @@ export default class App extends React.Component {
     })
   }
 
+  placeSelectHandler = key => {
+    this.setState({
+      selectedPlace: place.find(function (elem) {
+        return elem.key === key;
+      })
+
+    });
+  }
+
   // onItemDeleted wird im Unterkomponent als prop aufgerufen
   // innerhalb der onItemDeleted Funktion wird die Function
   // PlaceDeleteHandler aufgerufen
   render() {
     return (
       <View style={styles.container}>
+        <PlaceDetail selectedPlace={this.state.selectedPlace} />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
-        <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler} />
+        <PlaceList places={this.state.places} onItemSelected={this.placeSelectHandler} />
       </View>
     );
   }
