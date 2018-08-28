@@ -10,7 +10,7 @@ import PlaceDetail from "./src/components/PlaceDetail/PlaceDetail";
 export default class App extends React.Component {
   state = {
     places: [],
-    selectedPlace: ""
+    selectedPlace: null
   };
 
   /* Diese Funktion fügt ein Wort in das Array ein. Es wird an die
@@ -42,11 +42,12 @@ export default class App extends React.Component {
   }
 
   placeSelectHandler = key => {
-    this.setState({
-      selectedPlace: place.find(function (elem) {
-        return elem.key === key;
-      })
-
+    this.setState(prevState => {
+      return {
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key;
+        })
+      }
     });
   }
 
@@ -55,7 +56,7 @@ export default class App extends React.Component {
   // PlaceDeleteHandler aufgerufen
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} >
         <PlaceDetail selectedPlace={this.state.selectedPlace} />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList places={this.state.places} onItemSelected={this.placeSelectHandler} />
