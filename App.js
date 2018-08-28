@@ -36,7 +36,8 @@ export default class App extends React.Component {
       return {
         places: prevState.places.filter(place => {
           return place.key !== key;
-        })
+        }),
+        selectedPlace: null
       }
     })
   }
@@ -51,13 +52,24 @@ export default class App extends React.Component {
     });
   }
 
+  modalCloseHandler = () => {
+    this.setState({
+      selectedPlace: null
+    })
+  }
+
   // onItemDeleted wird im Unterkomponent als prop aufgerufen
   // innerhalb der onItemDeleted Funktion wird die Function
   // PlaceDeleteHandler aufgerufen
   render() {
     return (
       <View style={styles.container} >
-        <PlaceDetail selectedPlace={this.state.selectedPlace} />
+        <PlaceDetail
+          selectedPlace={this.state.selectedPlace} // ist ein Objekt und beinhaltet den ausgewählten Place
+          onItemDeleted={this.placeDeletedHandler} // Funktion placeDeletedHandler wird an Unterkomponente übergeben. Bestimmt was im array gelöscht werden soll.
+          // Unterkomponente greift über props.onItemDeleted auf diese Funktion zu
+          onModalClosed={this.modalCloseHandler}
+        />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList places={this.state.places} onItemSelected={this.placeSelectHandler} />
       </View>

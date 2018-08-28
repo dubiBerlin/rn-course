@@ -2,21 +2,12 @@ import React from "react";
 import { StyleSheet, Modal, View, Image, Text, Button } from "react-native";
 
 
-// let image = null;
-// let text = null;
-
-// if (props.selectedPlace.placeImage) {
-//     image = (
-//         <Image source={props.selectedPlace.placeImage} />
-//     )
-// }
-// if (props.selectedPlace.placeName) {
-//     text = (<Text>{props.selectedPlace.placeName}</Text>)
-// }
 const placeDetail = props => {
 
     let modalContent = null;
 
+    /* Wenn das übergebene Prop Objekt nicht NULL ist dann sollen Image und Text Komponente in Variable eingefügt werden
+      mit den entsprechenden props */
     if (props.selectedPlace) {
         modalContent = (
             <View>
@@ -26,12 +17,16 @@ const placeDetail = props => {
         )
     }
     return (
-        <Modal visible={props.selectedPlace !== null} animation="slide" >
+        <Modal
+            onRequestClose={props.onModalClosed}   // onRequestClose MUSS gesetzt werden in einem Modal. Es bestimmt wie es geschlossen werden muss.(Nur Android)
+            visible={props.selectedPlace !== null} // visible = nur sichtbar wenn das prop=selectedPlace übergeben worden ist 
+            animation="slide"                      // Typ der Animation
+        >
             <View style={styles.modalContainer}>
                 {modalContent}
                 <View>
-                    <Button title="Delete" color="orange" />
-                    <Button title="Close" color="yellow" />
+                    <Button title="Delete" color="orange" onPress={props.onItemDeleted} />
+                    <Button title="Close" color="yellow" onPress={props.onModalClosed} />
                 </View>
             </View>
         </Modal>
@@ -45,7 +40,7 @@ const styles = StyleSheet.create({
     placeImage: {
         marginRight: 8,
         height: 200,
-        width: 200
+        width: "100%"
     },
     placeName: {
         textAlign: "center",
