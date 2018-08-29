@@ -1,6 +1,7 @@
-import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from "..actions/actionTypes";
+import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from "../actions/actionTypes";
 import placeImage from "../../assets/ljubis.jpg";
 
+// Das ist der globale State
 const initialState = {
     places: [],
     selectedPlace: null
@@ -36,7 +37,6 @@ const reducer = (state = initialState, action) => {
             };
         case DESELECT_PLACE:
             return {
-                ...state,
                 selectedPlace: null
             }
         default:
