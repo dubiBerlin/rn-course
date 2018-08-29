@@ -31,11 +31,11 @@ export default class App extends React.Component {
      Es bekommt den Key des Objekts, es erstellt ein neues Array mithilfe von
      der filter funktion und dem alten Zustand prevState und nimmt nur dieObjekte
      die einen ungleichen key haben wir der übegebene. */
-  placeDeletedHandler = key => {
+  placeDeletedHandler = () => {
     this.setState(prevState => {
       return {
         places: prevState.places.filter(place => {
-          return place.key !== key;
+          return place.key !== prevState.selectedPlace.key;
         }),
         selectedPlace: null
       }
