@@ -5,10 +5,16 @@ import AuthScreen from "./src/screens/Auth/Auth";
 import SharePlaceScreen from "./src/screens/SharePlace/SharePlace";
 import FindPlaceScreen from "./src/screens/FindPlace/FindPlace";
 
+// Um die Screens mit redux zu verbinden müssen muss man den Provider und den Store
+// importieren und beides als drittes und viertes Argument an die Screens übergeben.
+import { Provider } from "react-redux";
+import configureStore from "./src/store/configureStore";
+const store = configureStore(); // gibt den erstellten Store zurück in dem ja die Reducers sind
+
 // Die einzelnen Screens werden hier registriert
-Navigation.registerComponent("awesome-places.AuthScreen", () => AuthScreen);
-Navigation.registerComponent("awesome-places.SharePlaceScreen", () => SharePlaceScreen);
-Navigation.registerComponent("awesome-places.FindPlaceScreen", () => FindPlaceScreen);
+Navigation.registerComponent("awesome-places.AuthScreen", () => AuthScreen, store, Provider);
+Navigation.registerComponent("awesome-places.SharePlaceScreen", () => SharePlaceScreen, store, Provider);
+Navigation.registerComponent("awesome-places.FindPlaceScreen", () => FindPlaceScreen, store, Provider);
 
 // Start a App
 Navigation.startSingleScreenApp({
