@@ -1,8 +1,8 @@
 import React from "react";
 import { AppRegistry } from 'react-native';
 import { Provider } from "react-redux";
-import App from './App';
-
+import App_old from './App_old';
+import App from "./App";
 import configureStore from "./src/store/configureStore";
 
 const store = configureStore(); // gibt den erstellten Store zurück in dem ja die Reducers sind
@@ -16,4 +16,5 @@ const RNRedux = () => (
     </Provider>
 )
 
+// Hier registrieren wir den Store über den Provider
 AppRegistry.registerComponent('rncourse', () => RNRedux);
