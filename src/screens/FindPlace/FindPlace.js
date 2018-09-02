@@ -16,7 +16,7 @@ class FindPlaceScreen extends Component {
         });
         this.props.navigator.push({
             screen: 'awesome-places.PlaceDetailScreen', // unique ID registered with Navigation.registerScreen
-            animationType: 'fade', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
+            animationType: 'slide-horizontal', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
             backButtonHidden: false, // hide the back button altogether (optional)
             passProps: { selectedPlace: place }, // Object that will be passed as props to the pushed screen (optional)
             animated: true,

@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
                 ...state, // das ist der gesamte alte state. über die drei Punkte holt man sich alle Eigenschaften des alten states und fügt ihn in das Objekt
                 places: state.places.concat({ // über diesen alten state greifen wir auf das Array places zu
                     key: Math.random(),
-                    name: action.placeName, // über die Action greift man auf den neuen Wert des properties "placeName" zu und fügt ihn in das neue Objekt ein unter der                           // Eigenschaft "name"
+                    name: action.placeName, // über die Action greift man auf den neuen Wert des properties "placeName" zu und fügt ihn in das neue Objekt                         // ein unter der Eigenschaft "name".
                     image: placeImage
                 })
             };
@@ -24,9 +24,9 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, // das ist der gesamte alte state. über die drei Punkte holt man sich alle Eigenschaften des alten states und fügt ihn in das Objekt
                 places: state.places.filter(place => {
-                    return place.key !== state.selectedPlace.key;
+                    return place.key !== action.placeKey;
                 }),
-                selectedPlace: null
+                //  selectedPlace: null
             };
         // case SELECT_PLACE:
         //     return {
