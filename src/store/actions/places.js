@@ -14,16 +14,16 @@ export const deletePlace = () => {
 };
 
 // bekommt den key als Parameter und fügt den in das Objekt unter 
-export const selectPlace = (key) => {
-    return {
-        type: SELECT_PLACE,
-        placeKey: key // payload
-    };
-};
+// export const selectPlace = (key) => {
+//     return {
+//         type: SELECT_PLACE,
+//         placeKey: key // payload
+//     };
+// };
 
 
-export const deselectPlace = () => {
-    return {
-        type: SELECT_PLACE
-    };
-};
+// export const deselectPlace = () => {
+//     return {
+//         type: SELECT_PLACE
+//     };
+// };

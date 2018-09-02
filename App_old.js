@@ -7,7 +7,7 @@ import placeImage from "./src/assets/ljubis.jpg";
 import PlaceDetail from "./src/components/PlaceDetail/PlaceDetail";
 
 // Wir importieren die action creators die ja in der actions/places definiert sind aber über index.js export werden
-import { addPlace, deletePlace, selectPlace, deselectPlace } from "./src/store/actions";
+import { addPlace, deletePlace, selectPlace, deselectPlace } from "./src/store/actions/index";
 
 import { connect } from 'react-redux';
 
