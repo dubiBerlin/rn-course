@@ -10,6 +10,32 @@ import { connect } from "react-redux";
 import { addPlace } from "../../store/actions/index";
 
 class SharePlaceScreen extends Component {
+    constructor(props) {
+        super(props);
+
+        // Wir binden -navigatorEvents an diese Komponente.
+        // Jetzt können wir alle clicks auf buttons mitverfolgen. Wir können jedem Button eine id verpassen
+        // und dann wird diese id im event abgefeuert und wir wissen genau welcher Button geklickt wurde.
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+
+
+    onNavigatorEvent(event) {
+        // NavBarButtonPress heisst dassirgendein Button in der NavBar gedrückt wurde
+        // sideDrawerToggle ist die id des Buttons der gedrückt wurde. Bei der Erstellung des Buttons urde ihm diese id verpasst.
+        if (event.type === "NavBarButtonPress") {
+            if (event.id === "sideDrawerToggle") {
+                this.props.navigator.toggleDrawer({
+                    side: "left",
+                    animated: true,
+                    animationType: 'slide-horizontal',
+                    to: "open"
+                })
+            }
+        }
+    }
+
 
     /* Diese Funktion übergibt über den prop onAddPlace 
     den Namen an die ActionCreator Funktion.

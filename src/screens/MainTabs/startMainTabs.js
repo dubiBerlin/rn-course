@@ -30,7 +30,8 @@ const startTabs = () => {
                         leftButtons: [
                             {
                                 icon: sources[2], // hier wird das icon für diesen Button abgerufen oben getImageS....
-                                title: "Menu"
+                                title: "Menu",
+                                id: "sideDrawerToggle" // // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
                             }
                         ]
                     }
@@ -44,7 +45,8 @@ const startTabs = () => {
                         leftButtons: [
                             {
                                 icon: sources[2], // hier wird das icon für diesen Button abgerufen oben getImageS....
-                                title: "Menu"
+                                title: "Menu",
+                                id: "sideDrawerToggle"
                             }
                         ]
                     }
