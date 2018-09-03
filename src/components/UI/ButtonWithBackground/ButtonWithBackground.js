@@ -8,16 +8,16 @@
 
 
 import React from "react";
-import { StyleSheet, TouchableHighlight, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 
 const buttonWithBackground = props => (
-    <TouchableHighlight onPress={props.onPress} >
+    <TouchableOpacity onPress={props.onPress} >
         <View style={[styles.button, { backgroundColor: props.color }]}>
             <Text style={{ color: props.textColor }}>
                 {props.children}
             </Text >
         </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
 );
 
 
