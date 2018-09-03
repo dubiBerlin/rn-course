@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet, ImageBackground } from 'react-native';
 import PlaceInput from "../../components/PlaceInput/PlaceInput";
+import backgroundImage from "../../assets/background2.jpg";
 
 // Importe für Redux
 // connect verbindet diese Komponente mit redux
@@ -44,12 +45,26 @@ class SharePlaceScreen extends Component {
 
     render() {
         return (
-            <View>
-                <PlaceInput onPlaceAdded={this.placeAddedHandler} />
-            </View>
+            <ImageBackground source={backgroundImage} style={styles.backgroundImage} >
+                <View>
+                    <Text>Share a place with us</Text>
+                    <View><Text>Image Preview!</Text></View>
+                    <Button title="Pick image" />
+                    <View><Text>Map</Text></View>
+                    <Button title="Locate Me" />
+                    <TextInput placeholder="Place Name" />
+                    <Button title="Share The Place!" />
+                </View>
+            </ImageBackground>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1
+    }
+})
 
 // mapDispatchToProps: bindet die ActionCreator Funktionen die ja in Store/Actions/places definiert sind mit der Komponente hier.
 // Jede einzelne Actioncreator Funktion wird einer Property im Objekt zugewiesen. Über dieser Property kann die Komponente

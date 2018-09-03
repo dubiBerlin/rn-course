@@ -6,7 +6,7 @@ import startMainTabs from "../MainTabs/startMainTabs";
 import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import MainText from "../../components/UI/MainText/MainText";
-import backgroundImage from "../../assets/background.jpg";
+import backgroundImage from "../../assets/background2.jpg";
 import ButtonWithBackground from "../../components/UI/ButtonWithBackground/ButtonWithBackground";
 
 class AuthScreen extends Component {
