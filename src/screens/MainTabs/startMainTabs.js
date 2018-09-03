@@ -15,23 +15,47 @@ const startTabs = () => {
        enthält. */
     Promise.all([
         Icon.getImageSource("md-map", 30),
-        Icon.getImageSource("md-share-alt", 30)
+        Icon.getImageSource("md-share-alt", 30),
+        Icon.getImageSource("ios-menu", 30)
     ]).then(sources => {
+        console.log(sources)
         Navigation.startTabBasedApp({
             tabs: [
                 {
                     label: 'Find Place', // tab label as appears under the icon in iOS (optional)
                     screen: 'awesome-places.FindPlaceScreen', // unique ID registered with Navigation.registerScreen
                     title: 'Find Place',
-                    icon: sources[0]
+                    icon: sources[0],
+                    navigatorButtons: { // Über navigatorButtons werden Menu-Buttons registriert
+                        leftButtons: [
+                            {
+                                icon: sources[2], // hier wird das icon für diesen Button abgerufen oben getImageS....
+                                title: "Menu"
+                            }
+                        ]
+                    }
                 },
                 {
                     label: 'Share Place', // tab label as appears under the icon in iOS (optional)
                     screen: 'awesome-places.SharePlaceScreen', // unique ID registered with Navigation.registerScreen
                     title: 'Share Place',
-                    icon: sources[1]
+                    icon: sources[1],
+                    navigatorButtons: { // Über navigatorButtons werden Menu-Buttons registriert
+                        leftButtons: [
+                            {
+                                icon: sources[2], // hier wird das icon für diesen Button abgerufen oben getImageS....
+                                title: "Menu"
+                            }
+                        ]
+                    }
                 }
-            ]
+            ],
+            drawer: {
+                left: {
+                    screen: "awesome-places.SideDrawerScreen"
+                }
+            }
+
         });
     })
 
