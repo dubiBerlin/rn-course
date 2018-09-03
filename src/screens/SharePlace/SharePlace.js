@@ -19,8 +19,6 @@ class SharePlaceScreen extends Component {
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
-
-
     onNavigatorEvent(event) {
         // NavBarButtonPress heisst dassirgendein Button in der NavBar gedrückt wurde
         // sideDrawerToggle ist die id des Buttons der gedrückt wurde. Bei der Erstellung des Buttons urde ihm diese id verpasst.
