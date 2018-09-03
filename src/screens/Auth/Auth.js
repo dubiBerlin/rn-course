@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 
 import startMainTabs from "../MainTabs/startMainTabs";
+// wir haben eigene TextInput Komponenten erstellt und die sollen jetzt eingebaut werden
+import DefaultInput from "../../components/UI/DefaultInput";
 
 class AuthScreen extends Component {
 
@@ -16,9 +18,9 @@ class AuthScreen extends Component {
                 <Text>Please Log In</Text>
                 <Button title="Switch To Login" style={styles.input} />
                 <View style={styles.inputContainer}>
-                    <TextInput placeholder="Your E-Mail Address" style={styles.input} underlineColorAndroid="transparent" />
-                    <TextInput placeholder="Password" style={styles.input} underlineColorAndroid="transparent" />
-                    <TextInput placeholder="Confirm Password" style={styles.input} underlineColorAndroid="transparent" />
+                    <DefaultInput placeholder="Your E-Mail Address" />
+                    <DefaultInput placeholder="Password" />
+                    <DefaultInput placeholder="Confirm Password" />
                 </View>
                 <Button title="Submit" onPress={this.loginHandler} style={styles.input} />
             </View >
@@ -34,14 +36,6 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         width: "80%"
-    },
-    input: {
-        width: "100%",
-        borderWidth: 1,
-        borderColor: "#eee",
-        padding: 5,
-        margin: 8,
-        borderRadius: 5
     }
 })
 
