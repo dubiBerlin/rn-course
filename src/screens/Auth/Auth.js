@@ -3,7 +3,9 @@ import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 
 import startMainTabs from "../MainTabs/startMainTabs";
 // wir haben eigene TextInput Komponenten erstellt und die sollen jetzt eingebaut werden
-import DefaultInput from "../../components/UI/DefaultInput";
+import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
+import HeadingText from "../../components/UI/HeadingText/HeadingText";
+
 
 class AuthScreen extends Component {
 
@@ -15,7 +17,7 @@ class AuthScreen extends Component {
         // underlineColorAndroid entfernt die borderbottom im input field in Android
         return (
             <View style={styles.container}>
-                <Text>Please Log In</Text>
+                <HeadingText >Please Log In</HeadingText>
                 <Button title="Switch To Login" />
                 <View style={styles.inputContainer}>
                     <DefaultInput placeholder="Your E-Mail Address" style={styles.input} />
