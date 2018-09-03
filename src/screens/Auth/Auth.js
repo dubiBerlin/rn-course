@@ -5,6 +5,7 @@ import startMainTabs from "../MainTabs/startMainTabs";
 // wir haben eigene TextInput Komponenten erstellt und die sollen jetzt eingebaut werden
 import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
+import MainText from "../../components/UI/MainText/MainText";
 
 
 class AuthScreen extends Component {
@@ -17,7 +18,9 @@ class AuthScreen extends Component {
         // underlineColorAndroid entfernt die borderbottom im input field in Android
         return (
             <View style={styles.container}>
-                <HeadingText >Please Log In</HeadingText>
+                <MainText>
+                    <HeadingText >Please Log In</HeadingText>
+                </MainText>
                 <Button title="Switch To Login" />
                 <View style={styles.inputContainer}>
                     <DefaultInput placeholder="Your E-Mail Address" style={styles.input} />
