@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: "#eee",
-        borderColor: "#bbb"
+        borderColor: "white"
     }
 })
 

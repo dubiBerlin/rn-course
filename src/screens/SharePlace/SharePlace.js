@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-import PlaceInput from "../../components/PlaceInput/PlaceInput";
+import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
+import MainText from "../../components/UI/MainText/MainText";
+import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import backgroundImage from "../../assets/background2.jpg";
+import backgroundImagePrev from "../../assets/ljubis.jpg";
 
 // Importe für Redux
 // connect verbindet diese Komponente mit redux
@@ -48,17 +51,27 @@ class SharePlaceScreen extends Component {
             <ScrollView>
                 <ImageBackground source={backgroundImage} style={styles.backgroundImage} >
                     <View style={styles.container}>
-                        <Text style={styles.title} >Share a place with us</Text>
+                        <HeadingText >
+                            <MainText styles={styles.title} >Share a place with us</MainText>
+                        </HeadingText>
                         <View style={styles.placeholder} >
                             <Text style={styles.text} >Image Preview!</Text>
+                            <ImageBackground source={backgroundImagePrev} style={styles.previewImage} ></ImageBackground>
+
                         </View>
-                        <Button title="Pick image" />
+                        <View style={styles.button} >
+                            <Button title="Pick image" />
+                        </View>
                         <View style={styles.placeholder} >
                             <Text style={styles.text} >Map</Text>
                         </View>
-                        <Button title="Locate Me" />
-                        <TextInput placeholder="Place Name" />
-                        <Button title="Share The Place!" />
+                        <View style={styles.button} >
+                            <Button title="Locate Me" />
+                        </View>
+                        <DefaultInput placeholder="Place Name" />
+                        <View style={styles.button} >
+                            <Button title="Share The Place!" />
+                        </View>
                     </View>
                 </ImageBackground>
             </ScrollView>
@@ -69,11 +82,18 @@ class SharePlaceScreen extends Component {
 /**
  * container: man setzt diesen container auf die äußerste View innerhalb der ScrollView und die flex:1 damit der gesamte
  *            Bildschirm angesprochen wird und alignItems auf center damit alles mittig gesetzt wird.
+ * previewImage: wird dem Vorschaubild zugeordnet welches als ImageBackground in die view gesteckt wird. Sie muss eine Größe bekommen, width,height oder flex
  */
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center"
+    },
+    button: {
+        margin: 8
+    },
+    inputContainer: {
+        width: "80%"
     },
     backgroundImage: {
         flex: 1
@@ -85,15 +105,17 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     text: {
-        backgroundColor: "red",
+        backgroundColor: "transparent",
         color: "#f7f7ff",
         fontWeight: "bold",
         textAlign: "center"
     },
     title: {
-        color: "#f7f7ff",
-        fontWeight: "300",
-        fontSize: 20
+        color: "#f7f7ff"
+    },
+    previewImage: {
+        width: "100%",
+        height: "100%"
     }
 })
 
