@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TextInput, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, Button, TextInput, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import PlaceInput from "../../components/PlaceInput/PlaceInput";
 import backgroundImage from "../../assets/background2.jpg";
 
@@ -45,24 +45,55 @@ class SharePlaceScreen extends Component {
 
     render() {
         return (
-            <ImageBackground source={backgroundImage} style={styles.backgroundImage} >
-                <View>
-                    <Text>Share a place with us</Text>
-                    <View><Text>Image Preview!</Text></View>
-                    <Button title="Pick image" />
-                    <View><Text>Map</Text></View>
-                    <Button title="Locate Me" />
-                    <TextInput placeholder="Place Name" />
-                    <Button title="Share The Place!" />
-                </View>
-            </ImageBackground>
+            <ScrollView>
+                <ImageBackground source={backgroundImage} style={styles.backgroundImage} >
+                    <View style={styles.container}>
+                        <Text style={styles.title} >Share a place with us</Text>
+                        <View style={styles.placeholder} >
+                            <Text style={styles.text} >Image Preview!</Text>
+                        </View>
+                        <Button title="Pick image" />
+                        <View style={styles.placeholder} >
+                            <Text style={styles.text} >Map</Text>
+                        </View>
+                        <Button title="Locate Me" />
+                        <TextInput placeholder="Place Name" />
+                        <Button title="Share The Place!" />
+                    </View>
+                </ImageBackground>
+            </ScrollView>
         );
     }
 }
 
+/**
+ * container: man setzt diesen container auf die äußerste View innerhalb der ScrollView und die flex:1 damit der gesamte
+ *            Bildschirm angesprochen wird und alignItems auf center damit alles mittig gesetzt wird.
+ */
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center"
+    },
     backgroundImage: {
         flex: 1
+    },
+    placeholder: {
+        width: "80%",
+        height: 250,
+        backgroundColor: "grey",
+        borderWidth: 1
+    },
+    text: {
+        backgroundColor: "red",
+        color: "#f7f7ff",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    title: {
+        color: "#f7f7ff",
+        fontWeight: "300",
+        fontSize: 20
     }
 })
 
