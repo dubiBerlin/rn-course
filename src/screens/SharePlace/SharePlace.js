@@ -15,6 +15,11 @@ import { connect } from "react-redux";
 import { addPlace } from "../../store/actions/index";
 
 class SharePlaceScreen extends Component {
+
+    state = {
+        placeName: ""
+    };
+
     constructor(props) {
         super(props);
 
@@ -22,7 +27,19 @@ class SharePlaceScreen extends Component {
         // Jetzt können wir alle clicks auf buttons mitverfolgen. Wir können jedem Button eine id verpassen
         // und dann wird diese id im event abgefeuert und wir wissen genau welcher Button geklickt wurde.
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+        this.placeNameChangedHandler = this.placeNameChangedHandler.bind(this)
     }
+
+
+    // diese Funktion wird an die PlaceInputNew Komponente übergeben um dort den Wert aus dem TextInput-Feld zu holen und
+    // hier in den eigenen state zu setzen.
+    placeNameChangedHandler = val => {
+        if (val !== null) {
+            this.setState({
+                placeName: val
+            });
+        }
+    };
 
     onNavigatorEvent(event) {
         // NavBarButtonPress heisst dassirgendein Button in der NavBar gedrückt wurde
@@ -43,8 +60,10 @@ class SharePlaceScreen extends Component {
     /* Diese Funktion übergibt über den prop onAddPlace 
     den Namen an die ActionCreator Funktion.
     onAddPlace ist ja in mapDispatchToProps definiert */
-    placeAddedHandler = placeName => {
-        this.props.onAddPlace(placeName);
+    placeAddedHandler = () => {
+        if (this.state.placeName.trim() !== "") {
+            this.props.onAddPlace(this.state.placeName);
+        }
     };
 
     render() {
@@ -57,9 +76,11 @@ class SharePlaceScreen extends Component {
                         </HeadingText>
                         <PickImage />
                         <PickLocation />
-                        <PlaceInputNew />
+                        <PlaceInputNew style={styles.placeInputNew} placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
+                        {/* So würden wir props übergeben um auf den Wert zuzgreifen wenn PlaceInputNew eine ClassBased Komponente wäre
+                              <PlaceInputNew style={styles.placeInputNew} onChanging={this.placeNameChangedHandler} />*/}
                         <View style={styles.button} >
-                            <Button title="Share The Place!" onPress={() => alert("hello")} />
+                            <Button title="Share The Place!" onPress={this.placeAddedHandler} />
                         </View>
                     </View>
                 </ImageBackground>
@@ -67,7 +88,6 @@ class SharePlaceScreen extends Component {
         );
     }
 }
-
 /**
  * container: man setzt diesen container auf die äußerste View innerhalb der ScrollView und die flex:1 damit der gesamte
  *            Bildschirm angesprochen wird und alignItems auf center damit alles mittig gesetzt wird.
@@ -87,24 +107,15 @@ const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1
     },
-    placeholder: {
-        width: "80%",
-        height: 250,
-        backgroundColor: "grey",
-        borderWidth: 1
-    },
-    text: {
-        backgroundColor: "transparent",
-        color: "#f7f7ff",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
     title: {
         color: "#f7f7ff"
     },
-    previewImage: {
-        width: "100%",
-        height: "100%"
+    // previewImage: {
+    //     width: "100%",
+    //     height: "100%"
+    // },
+    placeInputNew: {
+        backgroundColor: "white"
     }
 })
 
