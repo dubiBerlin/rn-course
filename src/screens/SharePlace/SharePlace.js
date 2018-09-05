@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
 import MainText from "../../components/UI/MainText/MainText";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import backgroundImage from "../../assets/background2.jpg";
-import backgroundImagePrev from "../../assets/ljubis.jpg";
+import PlaceInputNew from "../../components/PlaceInputNew/PlaceInputNew";
+import PickImage from "../../components/PickImage/PickImage";
+import PickLocation from "../../components/PickLocation/PickLocation";
 
 // Importe für Redux
 // connect verbindet diese Komponente mit redux
@@ -54,23 +55,11 @@ class SharePlaceScreen extends Component {
                         <HeadingText >
                             <MainText styles={styles.title} >Share a place with us</MainText>
                         </HeadingText>
-                        <View style={styles.placeholder} >
-                            <Text style={styles.text} >Image Preview!</Text>
-                            <ImageBackground source={backgroundImagePrev} style={styles.previewImage} ></ImageBackground>
-
-                        </View>
+                        <PickImage />
+                        <PickLocation />
+                        <PlaceInputNew />
                         <View style={styles.button} >
-                            <Button title="Pick image" />
-                        </View>
-                        <View style={styles.placeholder} >
-                            <Text style={styles.text} >Map</Text>
-                        </View>
-                        <View style={styles.button} >
-                            <Button title="Locate Me" />
-                        </View>
-                        <DefaultInput placeholder="Place Name" />
-                        <View style={styles.button} >
-                            <Button title="Share The Place!" />
+                            <Button title="Share The Place!" onPress={() => alert("hello")} />
                         </View>
                     </View>
                 </ImageBackground>
