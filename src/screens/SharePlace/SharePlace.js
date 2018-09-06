@@ -101,9 +101,6 @@ const styles = StyleSheet.create({
     button: {
         margin: 8
     },
-    inputContainer: {
-        width: "80%"
-    },
     backgroundImage: {
         flex: 1
     },

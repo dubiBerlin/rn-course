@@ -22,7 +22,9 @@ class PickImage extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        width: "80%"
+        // width: "80%"
+        width: "100%",
+        alignItems: "center"
     },
     text: {
         backgroundColor: "transparent",
@@ -31,8 +33,13 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     placeholder: {
-        height: 250,
-        borderWidth: 0
+        // height: 250,
+        // borderWidth: 0
+        borderWidth: 1,
+        borderColor: "black",
+        backgroundColor: "#eee",
+        width: "80%",
+        height: 150
     },
     button: {
         margin: 8
