@@ -1,16 +1,28 @@
 import React, { Component } from "react";
 
 // Dimensions damit kann man die Größe des aktuellen Geräts herausfinden
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 class SideDrawer extends Component {
     render() {
+
+
+
+
         return (
             // Fürden SideDrawer in Android sollte man width setzen
+            //style={styles.main}
             <View style={[
                 styles.container,
                 { width: Dimensions.get("window") * 0.8 }]}>
-                <Text>SideDrawer</Text>
+                <TouchableOpacity>
+                    <View style={styles.drawerItem}>
+                        <Icon style={styles.drawerItemIcon} size={30} name="md-log-out" color="#aaa" />
+                        <Text style={styles.drawerItemText}>Sign Out</Text>
+                    </View>
+
+                </TouchableOpacity>
             </View>
         );
     }
@@ -18,9 +30,22 @@ class SideDrawer extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 22,
-        backgroundColor: "white",
-        flex: 1
+        flex: 1,
+        paddingTop: 50,
+        backgroundColor: "white"
+    },
+    drawerItem: {
+        backgroundColor: "#eee",
+        flexDirection: 'row',
+        alignItems: "center",
+        padding: 10
+    },
+    drawerItemIcon: {
+        margin: 10
+    },
+    drawerItemText: {
+        margin: 5,
+        fontSize: 17
     }
 })
 export default SideDrawer;
