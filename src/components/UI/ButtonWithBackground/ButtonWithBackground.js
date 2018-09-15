@@ -8,17 +8,54 @@
 
 
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import {
+    StyleSheet,
+    TouchableOpacity,
+    TouchableNativeFeedback,
+    Text,
+    View,
+    Platform
+} from "react-native";
 
-const buttonWithBackground = props => (
-    <TouchableOpacity onPress={props.onPress} >
+const buttonWithBackground = props => {
+
+
+    const content = (
         <View style={[styles.button, { backgroundColor: props.color }]}>
             <Text style={{ color: props.textColor }}>
                 {props.children}
             </Text >
-        </View>
-    </TouchableOpacity>
-);
+        </View>);
+
+    return (
+        <TouchableOpacity onPress={props.onPress} >
+            {content}
+        </TouchableOpacity>
+    )
+
+    /**
+     * Hier wird geschaut in welchem OS wir uns befinden und je nachdem wird das 
+     * entsprechende Touchable - Objekt zurückgegeben.  TouchableNativeFeedback gibt unseren Buttons
+     * eine hässliche Breite. TouchableOpacity lässt sie so breit sein wie weit der Text geht 
+     * also bleiben wir bei TouchableOpacity.
+     */
+
+    // if (Platform.OS === "android") {
+    //     return (
+    //         <TouchableNativeFeedback onPress={props.onPress} >
+    //             {content}
+    //         </TouchableNativeFeedback>)
+    // }
+    // if (Platform.OS === "iOS") {
+    //     return (
+    //         <TouchableOpacity onPress={props.onPress} >
+    //             {content}
+    //         </TouchableOpacity>
+    //     )
+    // }
+
+
+};
 
 
 const styles = StyleSheet.create({

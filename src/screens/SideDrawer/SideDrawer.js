@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 
 // Dimensions damit kann man die Größe des aktuellen Geräts herausfinden
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 class SideDrawer extends Component {
     render() {
-
-
 
 
         return (
@@ -18,8 +16,15 @@ class SideDrawer extends Component {
                 { width: Dimensions.get("window") * 0.8 }]}>
                 <TouchableOpacity>
                     <View style={styles.drawerItem}>
-                        <Icon style={styles.drawerItemIcon} size={30} name="md-log-out" color="#aaa" />
-                        <Text style={styles.drawerItemText}>Sign Out</Text>
+                        <Icon
+                            style={styles.drawerItemIcon}
+                            size={30}
+                            name={Platform.OS === "android" ? "md-log-out" : "ios-log-out"}
+                            color="#aaa" />
+                        <Text
+                            style={styles.drawerItemText}>
+                            Sign Out
+                            </Text>
                     </View>
 
                 </TouchableOpacity>

@@ -1,6 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 // Icons importieren weil Android für Tabs Icons benötigt.
 import Icon from "react-native-vector-icons/Ionicons";
+import { Platform } from "react-native";
 
 
 
@@ -14,9 +15,9 @@ const startTabs = () => {
        Die Response Antwort gibt ein array zurück welches die Rückgaben jeder einzelnen Promise Funktion
        enthält. */
     Promise.all([
-        Icon.getImageSource("md-map", 30),
-        Icon.getImageSource("md-share-alt", 30),
-        Icon.getImageSource("ios-menu", 30)
+        Icon.getImageSource(Platform.OS === "android" ? "md-map" : "ios-map", 30),
+        Icon.getImageSource(Platform.OS === "android" ? "md-share-alt" : "ios-share-alt", 30),
+        Icon.getImageSource(Platform.OS === "android" ? "md-menu" : "ios-menu", 30)
     ]).then(sources => {
         console.log(sources)
         Navigation.startTabBasedApp({
