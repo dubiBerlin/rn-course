@@ -18,20 +18,35 @@ class AuthScreen extends Component {
 
     constructor(props) {
         super(props);
-
+        this.updateStyles.bind(this);
+        console.log("constructor Auth")
         /**
          * Dimensions.addEventListener("change")
          * Wird jedesmal ausgelöst wenn die Ansicht von Potrait auf Panorama bzw. anderherum gewechselt wird.
          * dims : Objekt: gibt die Höhe und die Breite des Geräts zurück. 
          */
-        Dimensions.addEventListener("change", (dims) => {
-            console.log(dims);
-            var orale = dims.window.height > 500 ? "potrait" : "landscape";
-            this.setState = ({
-                viewMode: orale
-            });
-            console.log("state: " + this.state.viewMode + " orale: " + orale);
+        // Dimensions.addEventListener("change", (dims) => {
+        //     console.log(dims);
+        // });
+        Dimensions.addEventListener("change", this.updateStyles); // Die callback Funkt wurde ausgelagert in die "updateStyles"
+    }
+
+    /**
+     * componentWillUnmount() is called every time when a component is removed by switching 
+     * to another component. Deswegen müssen wir die Eventlistener entfernen.
+     * 
+     */
+    componentWillUnmount() {
+        console.log("componentWillUnmount");
+        Dimensions.removeEventListener("change", this.updateStyles);
+    }
+
+    updateStyles = (dims) => {
+        var viewMode = dims.window.height > 500 ? "potrait" : "landscape";
+        this.setState = ({
+            viewMode
         });
+        console.log("state: " + this.state.viewMode + " viewMode: " + viewMode);
     }
 
 
