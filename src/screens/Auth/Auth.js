@@ -12,11 +12,7 @@ import ButtonWithBackground from "../../components/UI/ButtonWithBackground/Butto
 class AuthScreen extends Component {
 
     state = {
-        respStyles: {
-            pwContainerDirection: "column",
-            pwContainerJustifyContent: "flex-start",
-            pwWrapperWidth: "100%"
-        }
+        viewMode: Dimensions.get("window").height > 500 ? "potrait" : "landscape"
     }
 
 
@@ -30,25 +26,12 @@ class AuthScreen extends Component {
          */
         Dimensions.addEventListener("change", (dims) => {
             console.log(dims);
-
-            if (500 > dims.screen.height) {
-                this.setState({
-                    respStyles: {
-                        pwContainerDirection: "row",
-                        pwContainerJustifyContent: "space-between",
-                        pwWrapperWidth: "45%"
-                    }
-                })
-            } else {
-                this.setState({
-                    respStyles: {
-                        pwContainerDirection: "column",
-                        pwContainerJustifyContent: "flex-start",
-                        pwWrapperWidth: "100%"
-                    }
-                })
-            }
-        })
+            var orale = dims.window.height > 500 ? "potrait" : "landscape";
+            this.setState = ({
+                viewMode: orale
+            });
+            console.log("state: " + this.state.viewMode + " orale: " + orale);
+        });
     }
 
 
@@ -57,7 +40,7 @@ class AuthScreen extends Component {
     }
 
     render() {
-
+        console.log("state in render: " + this.state.viewMode);
         let headingText = null;
 
         /**
@@ -65,7 +48,15 @@ class AuthScreen extends Component {
          * Dadurch können wir bestimmen ob wir uns im Panorama oder im anderen Modus befinden.
          * Falls wir uns im horinzontalen Modus befinden soll die überschrift gesetzt werden.
          */
-        if (Dimensions.get("window").height > 500) {
+        // if (Dimensions.get("window").height > 500) {
+        //     headingText = (
+        //         <MainText>
+        //             <HeadingText >Please Log In</HeadingText>
+        //         </MainText>)
+        // }
+
+        // neue Version
+        if (this.state.viewMode == "potrait") {
             headingText = (
                 <MainText>
                     <HeadingText >Please Log In</HeadingText>
@@ -81,14 +72,11 @@ class AuthScreen extends Component {
                     <ButtonWithBackground textColor="white" color="transparent" onPress={this.loginHandler} >Switch To Login</ButtonWithBackground>
                     <View style={styles.inputContainer}>
                         <DefaultInput placeholder="Your E-Mail Address" style={styles.input} />
-                        <View style={{
-                            flexDirection: this.state.respStyles.pwContainerDirection,
-                            justifyContent: this.state.respStyles.pwContainerJustifyContent
-                        }}>
-                            <View style={{ width: this.state.respStyles.pwWrapperWidth }}>
+                        <View style={this.state.viewMode === "potrait" ? styles.portraitPasswordContainer : styles.landscapePasswordContainer}>
+                            <View style={this.state.viewMode === "potrait" ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
                                 <DefaultInput placeholder="Password" style={styles.input} />
                             </View>
-                            <View style={{ width: this.state.respStyles.pwWrapperWidth }}>
+                            <View style={this.state.viewMode === "potrait" ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
                                 <DefaultInput placeholder="Confirm Password" style={styles.input} />
                             </View>
                         </View>
@@ -117,12 +105,19 @@ const styles = StyleSheet.create({
         backgroundColor: "#eee",
         borderColor: "white"
     },
-    passwordContainer: {
-        flexDirection: Dimensions.get("window").height > 500 ? "column" : "row",
+    landscapePasswordContainer: {
+        flexDirection: "row",
         justifyContent: "space-between"
     },
-    passwordWrapper: {
-        width: Dimensions.get("window").height > 500 ? "100%" : "45%"
+    landscapePasswordWrapper: {
+        width: "45%"
+    },
+    portraitPasswordContainer: {
+        flexDirection: "column",
+        justifyContent: "flex-start"
+    },
+    portraitPasswordWrapper: {
+        width: "100%"
     }
 })
 
